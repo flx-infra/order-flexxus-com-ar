@@ -1,1 +1,56 @@
+version: '3.6'
 
+services:
+  flexxuswebapi-v6:
+    image: fabreguesm/flxwebapi-v6:2.8.311
+    networks:
+      - traefik
+    volumes:
+      - 'node_data:/app/data/'
+      - 'factura_data:/app/factura_electronica/'
+      - 'pdf_data:/app/public/pdf/'
+    ports:
+      - '5000:5000'
+    deploy:      
+      placement:
+        constraints: ["${NODE}"]      
+    environment:
+      - URL_HELPDESK=https://soporte-demo.flexxus.com.ar/api
+      - USER_HELPDESK=errores.flexxus@gmail.com
+      - PASS_HELPDESK=FlexxusApp2025
+      - SENDGRID_API_KEY=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
+      - SENDGRID_EMAIL=no-responda-este-email@flexxus.com
+      - SERVICIO_HELPDESK=54
+      - FE_MODE=production
+      - FE_PASSPHRASE=123456
+    logging:
+      driver: loki
+      options:
+        loki-url: ${LOKI_URL}  
+  flexxusapp:
+    image: fabreguesm/flexxusapp:1.136.4
+    ports: 
+      - '5001:80'
+    networks:
+      - traefik      
+    deploy:      
+      placement:
+        constraints: ["${NODE}"]            
+    environment:
+      - MAIL_TO_ERROR=errores.flexxus@gmail.com
+      - URL_MAP_SERVICE=http://10.150.4.12:15310
+    logging:
+      driver: loki
+      options:
+        loki-url: ${LOKI_URL}  
+volumes:
+  node_data:
+    name: "${FQDN_NOTDOT}_node-data"
+  factura_data:
+    name: "${FQDN_NOTDOT}_factura-data"
+  pdf_data:
+    name: "${FQDN_NOTDOT}_pdf-data"
+networks:
+  traefik:
+    external: true
+      name: traefik
