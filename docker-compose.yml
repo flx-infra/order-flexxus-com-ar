@@ -45,11 +45,11 @@ services:
         loki-url: ${LOKI_URL}  
 volumes:
   node_data:
-    name: "${FQDN_NOTDOT}_node-data"
+    name: "${SERVICE_NAME}_node-data"
   factura_data:
-    name: "${FQDN_NOTDOT}_factura-data"
+    name: "${SERVICE_NAME}_factura-data"
   pdf_data:
-    name: "${FQDN_NOTDOT}_pdf-data"
+    name: "${SERVICE_NAME}_pdf-data"
 networks:
   traefik:
     external: true  
