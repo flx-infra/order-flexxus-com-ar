@@ -52,5 +52,5 @@ volumes:
     name: "${FQDN_NOTDOT}_pdf-data"
 networks:
   traefik:
-    external: true
-      name: traefik
+    external: true  
+    name: traefik
