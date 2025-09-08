@@ -28,7 +28,7 @@ services:
       options:
         loki-url: ${LOKI_URL}  
   flexxusapp:
-    image: fabreguesm/flexxusapp:1.136.4
+    image: fabreguesm/flexxuserpweb:latest
     ports: 
       - '5001:80'
     networks:
