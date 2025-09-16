@@ -14,13 +14,7 @@ services:
     deploy:      
       placement:
         constraints: ["${NODE}"]      
-    environment:
-      - URL_HELPDESK=https://soporte-demo.flexxus.com.ar/api
-      - USER_HELPDESK=errores.flexxus@gmail.com
-      - PASS_HELPDESK=FlexxusApp2025
-      - SENDGRID_API_KEY=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
-      - SENDGRID_EMAIL=no-responda-este-email@flexxus.com
-      - SERVICIO_HELPDESK=54
+    environment:  
       - FE_MODE=production
       - FE_PASSPHRASE=123456
     logging:
