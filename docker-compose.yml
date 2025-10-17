@@ -2,7 +2,7 @@ version: '3.6'
 
 services: 
   flexxuserpweb:
-    image: fabreguesm/orderpweb:latest
+    image: fabreguesm/orderweb:latest
     ports: 
       - '5001:80'
     networks:
