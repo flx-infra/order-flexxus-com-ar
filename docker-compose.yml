@@ -1,26 +1,6 @@
 version: '3.6'
 
-services:
-  flexxuswebapi-v6:
-    image: fabreguesm/flxwebapi-v6:2.8.311
-    networks:
-      - traefik
-    volumes:
-      - 'node_data:/app/data/'
-      - 'factura_data:/app/factura_electronica/'
-      - 'pdf_data:/app/public/pdf/'
-    ports:
-      - '5000:5000'
-    deploy:      
-      placement:
-        constraints: ["${NODE}"]      
-    environment:  
-      - FE_MODE=production
-      - FE_PASSPHRASE=123456
-    logging:
-      driver: loki
-      options:
-        loki-url: ${LOKI_URL}  
+services: 
   flexxuserpweb:
     image: fabreguesm/flexxuserpweb:latest
     ports: 
@@ -37,13 +17,6 @@ services:
       driver: loki
       options:
         loki-url: ${LOKI_URL}  
-volumes:
-  node_data:
-    name: "${SERVICE_NAME}_node-data"
-  factura_data:
-    name: "${SERVICE_NAME}_factura-data"
-  pdf_data:
-    name: "${SERVICE_NAME}_pdf-data"
 networks:
   traefik:
     external: true  
