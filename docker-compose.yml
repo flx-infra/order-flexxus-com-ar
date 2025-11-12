@@ -6,7 +6,8 @@ services:
     ports: 
       - '5001:80'
     networks:
-      - traefik      
+      - traefik
+      - default
     deploy:      
       placement:
         constraints: ["${NODE}"]      
