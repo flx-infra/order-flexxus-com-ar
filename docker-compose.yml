@@ -30,5 +30,5 @@ services:
         loki-url: ${LOKI_URL}  
 networks:
   traefik:
-    external: true  
-    name: traefik
+    external:
+      name: traefik
