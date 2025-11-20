@@ -4,7 +4,7 @@ services:
   flexxuserpweb:
     image: fabreguesm/orderweb:latest
     ports: 
-      - '5001:80'
+      - "5001:80"
     networks:
       - traefik
     deploy:      
