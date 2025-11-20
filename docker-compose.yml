@@ -7,7 +7,6 @@ services:
       - '5001:80'
     networks:
       - traefik
-      - default
     deploy:      
       placement:
         constraints: ["${NODE}"]      
